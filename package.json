@@ -2,10 +2,17 @@
   "name": "@outreach/launchdarkly-js-extension-sdk",
   "version": "1.0.0",
   "description": "LaunchDarkly browser extension background service worker sdk",
-  "main": "index.js",
+  "main": "dist/js-extension-sdk.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "LICENSE",
+    "package.json",
+    "README.md",
+    "dist"
+  ],
   "repository": "git@github.com:getoutreach/launchdarkly-js-extension-sdk.git",
   "author": "Milan Konir <milan.konir@outreach.io>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "private": false,
   "scripts": {
     "build": "cross-env TS_NODE_PROJECT=./tsconfig.tsnode.json webpack",

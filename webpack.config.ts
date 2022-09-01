@@ -10,14 +10,6 @@ const config: Configuration = {
     'js-extension-sdk': './src/index.ts',
   },
   mode: isProductionBuild ? 'production' : 'development',
-  // output: {
-  //     filename: isProductionBuild ? '[name].[contenthash].js' : '[name].js',
-  //     chunkFilename: isProductionBuild ? '[name].[contenthash].js' : '[name].js',
-  //     path: path.resolve(baseDir, 'dist'),
-  //     publicPath: buildPublicPath(environmentType),
-  //     // https://webpack.js.org/guides/build-performance/#output-without-path-info
-  //     pathinfo: false,
-  //   },
 
   // Enable sourcemaps for debugging webpack's output.
   devtool: isProductionBuild ? 'hidden-source-map' : 'source-map',
@@ -29,7 +21,7 @@ const config: Configuration = {
   target: 'web',
   plugins: [
     new DefinePlugin({
-      __VERSION__: pjson.version,
+      __VERSION__: `'${pjson.version}'`,
     }),
   ],
   module: {

@@ -8,7 +8,7 @@ import type { LdClient, LdOptions, LdUser } from './types';
  * Initializes browser extension background service worker compliant launch darkly client
  */
 export function initialize(env: string, user: LdUser, options?: LdOptions): LdClient {
-  const platform = extensionPlatform(options);
+  const platform = extensionPlatform();
 
   const clientVars = common.initialize(env, user, options, platform, {
     disableSyncEventPost: { default: false },

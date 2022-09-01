@@ -1,9 +1,8 @@
 import { isSynchronousFlush, setSynchronousFlush } from './synchronousFlush';
-import type { LdOptions } from './types';
 
 declare let __VERSION__: string;
 
-export function extensionPlatform(options?: LdOptions): unknown {
+export function extensionPlatform(): unknown {
   const executeFetch = async (
     method: string,
     url: string,
