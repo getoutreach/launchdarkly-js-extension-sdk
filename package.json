@@ -1,0 +1,28 @@
+{
+  "name": "@outreach/launchdarkly-js-extension-sdk",
+  "version": "1.0.0",
+  "description": "LaunchDarkly browser extension background service worker sdk",
+  "main": "index.js",
+  "repository": "git@github.com:getoutreach/launchdarkly-js-extension-sdk.git",
+  "author": "Milan Konir <milan.konir@outreach.io>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "cross-env TS_NODE_PROJECT=./tsconfig.tsnode.json webpack",
+    "build:production": "cross-env TS_NODE_PROJECT=./tsconfig.tsnode.json NODE_ENV=production webpack"
+  },
+  "devDependencies": {
+    "chrome-types": "^0.1.134",
+    "cross-env": "^7.0.3",
+    "terser-webpack-plugin": "^5.3.6",
+    "ts-loader": "^9.3.1",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.8.2",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "launchdarkly-js-sdk-common": "^4.1.1"
+  }
+}
