@@ -6,9 +6,7 @@ const pjson = require('./package.json');
 const isProductionBuild = process.env.NODE_ENV === 'production';
 
 const config: Configuration = {
-  entry: {
-    'js-extension-sdk': './src/index.ts',
-  },
+  entry: './src/index.ts',
   mode: isProductionBuild ? 'production' : 'development',
 
   // Enable sourcemaps for debugging webpack's output.
@@ -18,7 +16,15 @@ const config: Configuration = {
     // Add '.ts' as resolvable extensions.
     extensions: ['.ts', '.js'],
   },
-  target: 'web',
+
+  output: {
+    filename: 'js-extension-sdk.js',
+    library: {
+      name: 'js-extension-sdk',
+      type: 'umd',
+    },
+  },
+
   plugins: [
     new DefinePlugin({
       __VERSION__: `'${pjson.version}'`,
