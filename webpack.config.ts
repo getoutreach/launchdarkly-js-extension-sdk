@@ -1,5 +1,4 @@
 import { Configuration, DefinePlugin } from 'webpack';
-import TerserPlugin from 'terser-webpack-plugin';
 
 const pjson = require('./package.json');
 
@@ -50,12 +49,7 @@ const config: Configuration = {
     ],
   },
   optimization: {
-    minimize: isProductionBuild,
-    minimizer: [
-      new TerserPlugin({
-        parallel: 2,
-      }),
-    ],
+    minimize: false,
   },
 };
 

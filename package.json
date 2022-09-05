@@ -14,13 +14,14 @@
   "author": "Milan Konir <milan.konir@outreach.io>",
   "license": "Apache-2.0",
   "scripts": {
+    "clean": "rm -fr dist tsconfig.tsbuildinfo",
+    "prepack": "yarn clean && yarn build:production",
     "build": "cross-env TS_NODE_PROJECT=./tsconfig.tsnode.json webpack",
     "build:production": "cross-env TS_NODE_PROJECT=./tsconfig.tsnode.json NODE_ENV=production webpack"
   },
   "devDependencies": {
     "chrome-types": "^0.1.134",
     "cross-env": "^7.0.3",
-    "terser-webpack-plugin": "^5.3.6",
     "ts-loader": "^9.3.1",
     "ts-node": "^10.9.1",
     "tslib": "^2.4.0",
