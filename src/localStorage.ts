@@ -54,5 +54,5 @@ function checkLastError(reject: (reason: unknown) => void) {
 }
 
 export function createLocalStorage() {
-  return chrome.runtime.getManifest().version === 3 ? localStorageV3 : localStorageV2;
+  return chrome.runtime.getManifest()?.manifest_version === 3 ? localStorageV3 : localStorageV2;
 }
