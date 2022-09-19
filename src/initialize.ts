@@ -19,9 +19,15 @@ export function initialize(env: string, user: LdUser, options?: LdOptions): LdCl
   clientVars.start();
 
   // Flush events via keepalive fetch request
-  const syncFlushHandler = createSyncFlushHandler(client);
+  // const syncFlushHandler = createSyncFlushHandler(client);
 
-  chrome.runtime.onSuspend.addListener(syncFlushHandler);
+  // Per discussion in extension google groups:
+  //    https://groups.google.com/a/chromium.org/g/chromium-extensions/c/8R8ObmX7Ncc/m/SlHlYuSmAwAJ?utm_medium=email&utm_source=footer
+  //    https://github.com/GoogleChrome/developer.chrome.com/pull/3676
+  // The onSuspend does not fire in service worker environment
+  // TODO: Keep in touch with updates to figure out if there's any other background service worker lifecycle we could tap into to
+  // flush the analytic events
+  // chrome.runtime.onSuspend.addListener(syncFlushHandler);
 
   return client;
 }
