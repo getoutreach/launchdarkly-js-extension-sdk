@@ -1,7 +1,7 @@
 import * as common from 'launchdarkly-js-sdk-common';
 
 import { extensionPlatform } from './extensionPlatform';
-import { setSynchronousFlush } from './synchronousFlush';
+// import { setSynchronousFlush } from './synchronousFlush';
 import type { LdClient, LdOptions, LdUser } from './types';
 
 /**
@@ -32,14 +32,14 @@ export function initialize(env: string, user: LdUser, options?: LdOptions): LdCl
   return client;
 }
 
-function createSyncFlushHandler(client: LdClient) {
-  return async () => {
-    setSynchronousFlush(true);
-    try {
-      await client.flush();
-    } catch (e) {
-      // Silently ignore flush errors
-    }
-    setSynchronousFlush(false);
-  };
-}
+// function createSyncFlushHandler(client: LdClient) {
+//   return async () => {
+//     setSynchronousFlush(true);
+//     try {
+//       await client.flush();
+//     } catch (e) {
+//       // Silently ignore flush errors
+//     }
+//     setSynchronousFlush(false);
+//   };
+// }
