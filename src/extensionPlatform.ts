@@ -1,3 +1,4 @@
+import { createLocalStorage } from './localStorage';
 import { isSynchronousFlush, setSynchronousFlush } from './synchronousFlush';
 
 declare let __VERSION__: string;
@@ -58,16 +59,7 @@ export function extensionPlatform(): unknown {
   const isDoNotTrack = () => false;
 
   // Extension specific implementation of local storage backed by chrome.storage.local
-  const localStorage = {
-    get: async (key: string): Promise<string | undefined> => {
-      const values = await chrome.storage.local.get(key);
-      const returnValue = values[key];
-
-      return typeof returnValue === 'string' ? returnValue : undefined;
-    },
-    set: (key: string, value: string): Promise<void> => chrome.storage.local.set({ [key]: value }),
-    clear: (key: string): Promise<void> => chrome.storage.local.remove(key),
-  };
+  const localStorage = createLocalStorage();
 
   // We won't support useReport option foe now
   const eventSourceAllowsReport = false;

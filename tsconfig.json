@@ -31,7 +31,7 @@
     "noPropertyAccessFromIndexSignature": false,
     "noImplicitOverride": true,
 
-    "types": ["chrome-types"],
+    "types": ["chrome-types/_all"],
     "typeRoots": ["./src/typings"],
     "baseUrl": ".",
 
