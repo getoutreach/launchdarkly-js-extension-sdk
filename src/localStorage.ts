@@ -26,7 +26,7 @@ const localStorageV2: LocalStorage = {
 
         const returnValue = values[key];
 
-        resolve(returnValue === 'string' ? returnValue : undefined);
+        resolve(typeof returnValue === 'string' ? returnValue : undefined);
       })
     ),
   set: (key, value) =>
