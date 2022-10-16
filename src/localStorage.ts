@@ -49,7 +49,7 @@ const localStorageV2: LocalStorage = {
 
 function checkLastError(reject: (reason: unknown) => void) {
   if (chrome.runtime.lastError) {
-    reject(chrome.runtime.lastError);
+    reject(chrome.runtime.lastError.message);
   }
 }
 

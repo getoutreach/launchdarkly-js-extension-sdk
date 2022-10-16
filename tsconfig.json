@@ -31,8 +31,8 @@
     "noPropertyAccessFromIndexSignature": false,
     "noImplicitOverride": true,
 
-    "types": ["chrome-types/_all"],
-    "typeRoots": ["./src/typings"],
+    "types": ["chrome-types/_all", "jest"],
+    "typeRoots": ["./src/typings", "./node_modules/@types"],
     "baseUrl": ".",
 
     "rootDir": "./src",
