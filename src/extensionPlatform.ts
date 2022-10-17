@@ -12,18 +12,19 @@ export function extensionPlatform(): unknown {
     signal: AbortSignal
   ) => {
     try {
-      const fetchHeaders = new Headers(headers);
+      let keepalive = false;
 
       if (isSynchronousFlush()) {
-        fetchHeaders.set('keepalive', 'true');
+        keepalive = true;
         setSynchronousFlush(false);
       }
 
       const result = await fetch(url, {
         method,
-        headers: fetchHeaders,
+        headers: new Headers(headers),
         body,
         signal,
+        keepalive,
       });
 
       return {
