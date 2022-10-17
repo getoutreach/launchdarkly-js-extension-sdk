@@ -3,7 +3,7 @@ import { isSynchronousFlush, setSynchronousFlush } from './synchronousFlush';
 
 declare let __VERSION__: string;
 
-export function extensionPlatform(): unknown {
+export function extensionPlatform(): any {
   const executeFetch = async (
     method: string,
     url: string,
