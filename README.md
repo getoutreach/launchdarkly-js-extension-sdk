@@ -1,4 +1,4 @@
-# @outreach/launchdarkly-js-extension-sdk
+# @getoutreach/launchdarkly-js-extension-sdk
 
 LaunchDarkly SDK for browser extension background service workers.
 
