@@ -20,7 +20,7 @@ describe('localStorage', () => {
       chromeMock.runtime.getManifest.mockReturnValue({ manifest_version: 2 });
     });
 
-    describe('get', () => {
+    describe('set', () => {
       it('sets storage value', async () => {
         const localStorage = createLocalStorage();
         const promise = localStorage.set('foo', 'bar');
@@ -41,7 +41,7 @@ describe('localStorage', () => {
       });
     });
 
-    describe('set', () => {
+    describe('get', () => {
       it('returns storage value when stored value type is string', async () => {
         const localStorage = createLocalStorage();
         const promise = localStorage.get('foo');
@@ -100,10 +100,12 @@ describe('localStorage', () => {
     describe('set', () => {
       it('sets storage value', async () => {
         const localStorage = createLocalStorage();
-        await localStorage.set('foo', 'bar');
+        const promise = localStorage.set('foo', 'bar');
+        chromeMock.storage.local.set.mock.calls[0][1]?.();
+        await promise;
 
         expect(chromeMock.storage.local.set).toBeCalledTimes(1);
-        expect(chromeMock.storage.local.set).toBeCalledWith({ foo: 'bar' });
+        expect(chromeMock.storage.local.set).toBeCalledWith({ foo: 'bar' }, expect.any(Function));
       });
     });
 
