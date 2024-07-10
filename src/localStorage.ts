@@ -4,14 +4,28 @@ interface LocalStorage {
   clear: (key: string) => Promise<void>;
 }
 
+const localStorageBase: Pick<LocalStorage, 'set'> = {
+  /**
+   * MV3 is unreliable in returning a promise from the set method. Resolved with a MV2 callback api instead.
+   */
+  set: (key: string, value: string): Promise<void> =>
+    new Promise((resolve, reject) => {
+      chrome.storage.local.set({ [key]: value }, () => {
+        checkLastError(reject);
+
+        resolve();
+      });
+    }),
+};
+
 const localStorageV3: LocalStorage = {
+  ...localStorageBase,
   get: async (key: string): Promise<string | undefined> => {
     const values = await chrome.storage.local.get(key);
     const returnValue = values[key];
 
     return typeof returnValue === 'string' ? returnValue : undefined;
   },
-  set: (key: string, value: string): Promise<void> => chrome.storage.local.set({ [key]: value }),
   clear: (key: string): Promise<void> => chrome.storage.local.remove(key),
 };
 
@@ -19,6 +33,7 @@ const localStorageV3: LocalStorage = {
  * Makes the sdk compatible with manifest v2, remove this once manifest v2 sunsets
  */
 const localStorageV2: LocalStorage = {
+  ...localStorageBase,
   get: key =>
     new Promise((resolve, reject) =>
       chrome.storage.local.get(key, values => {
@@ -29,14 +44,6 @@ const localStorageV2: LocalStorage = {
         resolve(typeof returnValue === 'string' ? returnValue : undefined);
       })
     ),
-  set: (key, value) =>
-    new Promise((resolve, reject) => {
-      chrome.storage.local.set({ [key]: value }, () => {
-        checkLastError(reject);
-
-        resolve();
-      });
-    }),
   clear: key =>
     new Promise((resolve, reject) =>
       chrome.storage.local.remove(key, () => {
