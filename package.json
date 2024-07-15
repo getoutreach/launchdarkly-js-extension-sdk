@@ -1,6 +1,6 @@
 {
   "name": "@outreach/launchdarkly-js-extension-sdk",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "LaunchDarkly browser extension background service worker sdk",
   "main": "dist/js-extension-sdk.js",
   "types": "dist/index.d.ts",
