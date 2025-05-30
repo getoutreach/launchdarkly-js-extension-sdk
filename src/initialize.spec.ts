@@ -15,15 +15,15 @@ describe('initialize', () => {
       on: jest.fn(),
       variation: jest.fn(),
       waitUntilReady: jest.fn(),
-      getUser: jest.fn(),
       flush: jest.fn(),
       variationDetail: jest.fn(),
       setStreaming: jest.fn(),
       off: jest.fn(),
       track: jest.fn(),
-      alias: jest.fn(),
       allFlags: jest.fn(),
       close: jest.fn(),
+      getContext: jest.fn(),
+      addHook: jest.fn(),
     };
     initializeMock.mockReturnValue({
       client,
